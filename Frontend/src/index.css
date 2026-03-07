@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+/* This ensures the transition is smooth when you click the button */
+body {
+  @apply bg-white text-slate-900 dark:bg-slate-900 dark:text-white transition-colors duration-500;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar to match your theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100 dark:bg-slate-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-500 rounded-full;
+}
