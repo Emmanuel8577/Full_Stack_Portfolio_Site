@@ -6,24 +6,27 @@ import cors from "cors";
 import ConnectDB from "./config/db.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import authRoutes from './routes/auth.js';
-import messageRoutes from "./routes/messageRoutes.js"; // 👈 ADD THIS MISSING IMPORT
+import messageRoutes from "./routes/messageRoutes.js"; 
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// Logger
-app.use((req, res, next) => {
-  console.log(`🚀 ${req.method} ${req.url}`);
-  next();
-});
+// Backend/server.js
+app.use(cors({
+  origin: [
+    "http://localhost:5173", 
+    "https://emmanuelportfolio-nine.vercel.app" 
+  ],
+  credentials: true
+}));
 
 ConnectDB();
 
 // API Routes
 app.use("/api/projects", projectRoutes);
-app.use("/api/messages", messageRoutes); // 👈 Changed to "messages" (plural) to match your Dashboard axios calls
+app.use("/api/messages", messageRoutes); 
 app.use('/api/auth', authRoutes);
 
 const PORT = process.env.PORT || 5000;
