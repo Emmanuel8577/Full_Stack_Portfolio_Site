@@ -10,12 +10,13 @@ import messageRoutes from "./routes/messageRoutes.js";
 
 const app = express();
 
-app.use(cors());
+
 app.use(express.json());
 
 // Backend/server.js
 app.use(cors({
   origin: [
+    "http://localhost",
     "http://localhost:5173", 
     "https://emmanuelportfolio-nine.vercel.app" 
   ],

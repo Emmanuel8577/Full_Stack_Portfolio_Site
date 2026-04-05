@@ -1,14 +1,15 @@
-import React, { createContext, useEffect, useState } from 'react';
-
-// 1. Move the export AWAY from here. Keep it internal.
-const ThemeContext = createContext();
-
-// 2. Export ONLY the component
 export const ThemeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) return savedTheme === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // 1. If the user has visited before, respect their choice
+    if (savedTheme) {
+      return savedTheme === 'dark';
+    }
+    
+    // 2. DEFAULT: Force Dark Mode for all new visitors
+    // (We ignore system settings to ensure your "Black" aesthetic is the default)
+    return true; 
   });
 
   useEffect(() => {
@@ -30,7 +31,3 @@ export const ThemeProvider = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
-
-// 3. Instead of exporting the context, export a helper function at the bottom
-// This satisfies Vite's rule because it's still related to the component logic.
-export { ThemeContext };
