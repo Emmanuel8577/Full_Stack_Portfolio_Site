@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 // Ensure this path and filename match your assets folder exactly
-import profileImg from '../assets/Emmanuel Adikwu new profile pics.jpg';
+import profileImg from '../assets/Emmanuelprofilepics.jpg';
 
 const About = () => {
   const stats = [

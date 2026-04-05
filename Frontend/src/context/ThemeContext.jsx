@@ -1,15 +1,13 @@
+import React, { createContext, useEffect, useState } from 'react';
+
+// 1. ADD 'export' RIGHT HERE
+export const ThemeContext = createContext();
+
 export const ThemeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
-    
-    // 1. If the user has visited before, respect their choice
-    if (savedTheme) {
-      return savedTheme === 'dark';
-    }
-    
-    // 2. DEFAULT: Force Dark Mode for all new visitors
-    // (We ignore system settings to ensure your "Black" aesthetic is the default)
-    return true; 
+    // Force Dark Mode by default
+    return savedTheme ? savedTheme === 'dark' : true; 
   });
 
   useEffect(() => {
